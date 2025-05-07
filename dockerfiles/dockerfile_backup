@@ -1,0 +1,48 @@
+# ---- Base image: CUDA 12.2 + Ubuntu 20.04 ----
+FROM nvidia/cuda:12.2.0-runtime-ubuntu20.04
+
+# ---- Set timezone and environment variables ----
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Seoul
+
+# ---- Install basic tools + build tools ----
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    wget curl git bzip2 ca-certificates sudo \
+    libglib2.0-0 libxext6 libsm6 libxrender1 \
+    build-essential cmake \
+    libgmp-dev libmpfr-dev libboost-all-dev libeigen3-dev \
+    libgl1-mesa-glx \        # OpenCV¿ë libGL.so.1
+    libxmu6 \                # binvox¿ë libXmu.so.6
+    libglu1-mesa \           # binvox¿ë libGLU.so.1
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# ---- Install Miniconda ----
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+    bash ~/miniconda.sh -b -p /opt/conda && \
+    rm ~/miniconda.sh
+
+# ---- Set PATH for conda ----
+ENV PATH=/opt/conda/bin:$PATH
+
+# ---- Copy Conda environment file ----
+COPY d2csg_env.yml /tmp/d2csg_env.yml
+
+# ---- Create Conda environment ----
+RUN conda env create -f /tmp/d2csg_env.yml
+
+# ---- Init conda for bash and activate env by default ----
+RUN /opt/conda/bin/conda init bash && \
+    echo "conda activate d2csg" >> /root/.bashrc
+
+# ---- Set shell to bash to ensure conda init works ----
+SHELL ["/bin/bash", "-c"]
+
+# ---- Install additional pip packages inside the conda env ----
+RUN conda activate d2csg && pip install h5py
+
+# ---- Set working directory ----
+WORKDIR /workspace
+
+# ---- Default command ----
+CMD ["bash"]

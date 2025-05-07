@@ -1,0 +1,23 @@
+# 무시할 디렉토리
+figures/
+*/__pycache__/
+
+# 무시할 파일
+vox.ply
+
+# 일반적인 파이썬 캐시 및 임시 파일
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+*.log
+
+# Jupyter Notebook checkpoint
+.ipynb_checkpoints/
+
+# 시스템 파일
+.DS_Store
+Thumbs.db
+
+abc_voxel/ModelParameters/initial_abc.pth
+cylinder_voxel/ModelParameters/initial_abc.pth

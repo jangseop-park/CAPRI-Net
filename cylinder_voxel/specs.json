@@ -1,0 +1,15 @@
+{
+  "_comment": "Description: 실험 설명, DataSource: 데이터셋 경로, NetworkArch: 네트워크 아키텍처 이름, NumEpochs: 전체 학습 epoch 수, SnapshotFrequency: 몇 epoch마다 모델 저장, AdditionalSnapshots: 추가 저장 epoch, LearningRateSchedule: 학습률 스케줄(Type/Value 등). 이 파일은 실험의 설정값을 정의하며 train.py 등에서 자동으로 읽어 사용.",
+  "Description" : "This experiment learns a shape representation for CAD shapes ",
+  "DataSource" : "/workspace/data/cyclinder_data",
+  "NetworkArch" : "capri",
+  "NumEpochs" : 1000,
+  "SnapshotFrequency" : 100,
+  "AdditionalSnapshots" : [ 100, 500 ],
+  "LearningRateSchedule" : [
+    {
+      "Type" : "Constant",
+      "Value" : 0.0001
+    }]
+}
+
