@@ -1,5 +1,6 @@
 # 무시할 디렉토리
 figures/
+dockerfiles/
 */__pycache__/
 
 # 무시할 파일
