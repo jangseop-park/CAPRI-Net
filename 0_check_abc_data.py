@@ -40,6 +40,8 @@ file_list = [
     ('test_names.npz', 'npz'),
     ('voxel2mesh.hdf5', 'hdf5'),
 ]
+#asdf
+
 
 for fname, ftype in file_list:
     fpath = os.path.join(root, fname)
