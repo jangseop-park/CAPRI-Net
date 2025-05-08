@@ -2,7 +2,7 @@
 figures/
 dockerfiles/
 */__pycache__/
-
+data/
 # 무시할 파일
 vox.ply
 

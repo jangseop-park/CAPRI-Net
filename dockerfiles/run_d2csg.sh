@@ -9,7 +9,7 @@ docker run \
 --shm-size=200g \
 --ulimit memlock=-1 \
 --ulimit stack=37108864 \
---volume /mnt/nas1/1_projects/joint_research/CAPRI-Net/code/jangseop/CAPRI-Net:/workspace \
+--volume /home/lab1_lyr/research/CAPRI-Net:/workspace \
 --volume /mnt/nas1/1_projects/joint_research/CAPRI-Net/data:/workspace/data \
 -p "$jupyter_port":8888 \
 -p "$tensorboard_port":6006 \
